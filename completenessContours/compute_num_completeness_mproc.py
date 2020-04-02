@@ -37,10 +37,12 @@ def nas_multi_grid_dr25(worker_id, n_workers, min_period, max_period,
     # Define the grids and data parameters
     period_want = np.linspace(min_period, max_period, n_period)
     rp_want = np.linspace(min_rp, max_rp, n_rp)
+
     # Load the stellar data 
     stellar_database_filename = stellar_database
     stellar_dict = read_stellar_table(stellar_database_filename)
     kiclist = [cur.id for cur in stellar_dict.values()]
+    print(len(kiclist))
 
     # Ensure kic list is sorted
     kiclist = np.sort(kiclist)
@@ -153,6 +155,7 @@ if __name__ == "__main__":
     parser.add_argument("output_prefix", type=str,
                         help="Prefix for output files")
     args = parser.parse_args()
+    #print(args)
     outputresult = nas_multi_grid_dr25(args.worker_id, args.n_workers,
                                         args.min_period, args.max_period, args.n_period,
                                         args.min_rp, args.max_rp, args.n_rp,
