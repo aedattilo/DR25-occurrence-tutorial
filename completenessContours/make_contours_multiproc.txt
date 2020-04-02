@@ -4,5 +4,5 @@ nworkers=8
 
 for (( i=0; i<$nworkers; i++ ))
 do 
-	python compute_num_completeness_mproc.py $i $nworkers 50.0 400.0 2000 0.75 12.0 3001 ../stellarCatalogs/dr25_stellar_supp_gaia_clean_GK.txt /Volumes/yoru/dr25/dr25CompletenessFits ../GKbaseline/vetCompletenessTable.pkl logisticX0xRotatedLogisticY02 out &
+	python -u compute_num_completeness_mproc.py $i $nworkers 0.01 500.0 2000 0.75 12.0 3001 ../stellarCatalogs/dr25_stellar_supp_gaia_clean_GKM.txt ../../../../../data/users/adattilo/PDM ../GKbaseline/vetCompletenessTable.pkl logisticX0xRotatedLogisticY02 out &
 done
