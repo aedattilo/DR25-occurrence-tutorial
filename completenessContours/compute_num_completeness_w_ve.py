@@ -116,7 +116,6 @@ def transit_duration_zero(rstar, logg, per, ecc):
     r_sun = 6.9598e10 # cm
     au2cm = 1.49598e13 # 1 AU = 1.49598e13 cm
     durat = (per*24.0) / np.pi * (rstar*r_sun) / (semia*au2cm)
-    #transit duration e > 0
     durat = durat * np.sqrt(1.0-ecc**2);
 
     return durat
@@ -1039,6 +1038,6 @@ if __name__ == "__main__":
     plt.savefig(wantFigure+'.eps',bbox_inches='tight')
     plt.show()
     
-    print ("We Will Miss You Kepler!")
+    print("We Will Miss You Kepler!")
 
 
