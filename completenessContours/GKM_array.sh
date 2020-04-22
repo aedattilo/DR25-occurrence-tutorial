@@ -12,6 +12,6 @@ pwd; hostname; date
 
 module load python/3.6.7 numpy pandas astropy scipy h5py matplotlib
 
-python -u compute_num_completeness_mproc.py $SLURM_ARRAY_TASK_ID 8 0.01 500.0 2000 0.75 12.0 3001 ../stellarCatalogs/dr25_stellar_supp_gaia_clean_GKM.txt ../../../../../data/users/adattilo/PDM ../GKbaseline/vetCompletenessTable.pkl logisticX0xRotatedLogisticY02 out
+python -u compute_num_completeness_mproc.py $SLURM_ARRAY_TASK_ID 8 10 400.0 2000 4 15.0 3000 ../stellarCatalogs/dr25_stellar_supp_gaia_clean_GKM.txt ../../../../../data/users/adattilo/PDM ../GKbaseline/vetCompletenessTable.pkl logisticX0xRotatedLogisticY02 out
 
 date
