@@ -35,8 +35,8 @@ def nas_multi_grid_dr25(worker_id, n_workers, min_period, max_period,
 
     print("worker id " + str(worker_id))
     # Define the grids and data parameters
-    period_want = np.linspace(min_period, max_period, n_period)
-    rp_want = np.linspace(min_rp, max_rp, n_rp)
+    period_want = np.logspace(np.log10(min_period), np.log10(max_period), n_period)
+    rp_want = np.logspace(np.log10(min_rp), np.log10(max_rp), n_rp)
 
     # Load the stellar data 
     stellar_database_filename = stellar_database
