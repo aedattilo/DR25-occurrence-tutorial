@@ -20,8 +20,8 @@ n_rp = prihdr["NRP"]
 print ("KIC list length" + '{:6d}'.format(kiclist.size))
 
 
-period_want = np.linspace(min_period, max_period, n_period)
-rp_want = np.linspace(min_rp, max_rp, n_rp)
+period_want = np.logspace(np.log10(min_period), np.log10(max_period), n_period)
+rp_want = np.logspace(np.log10(min_rp), np.log10(max_rp), n_rp)
 period_want2d, rp_want2d = np.meshgrid(period_want, rp_want)
 
 mynearblack = tuple(np.array([75.0, 75.0, 75.0]) / 255.0)
@@ -31,7 +31,7 @@ tickfontsize=14.0
 datalinewidth=3.0
 plotboxlinewidth=3.0
 
-wantFigure = inputprefix
+wantFigure = 'logCompleteness'
 plt.figure(figsize=(6,4.5),dpi=300)
 ax = plt.gca()
 ax.set_position([0.125, 0.125, 0.825, 0.825])
@@ -53,5 +53,7 @@ for axis in ['top','bottom','left','right']:
     ax.spines[axis].set_color(mynearblack)
 ax.tick_params('both', labelsize=tickfontsize, width=plotboxlinewidth, 
                color=mynearblack, length=plotboxlinewidth*3)
+plt.xscale('log')
+plt.yscale('log')
 plt.savefig(wantFigure+'.png',bbox_inches='tight')
 plt.savefig(wantFigure+'.eps',bbox_inches='tight')
