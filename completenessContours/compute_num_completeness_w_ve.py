@@ -116,6 +116,7 @@ def transit_duration_zero(rstar, logg, per, ecc):
     r_sun = 6.9598e10 # cm
     au2cm = 1.49598e13 # 1 AU = 1.49598e13 cm
     durat = (per*24.0) / np.pi * (rstar*r_sun) / (semia*au2cm)
+    #transit duration e > 0
     durat = durat * np.sqrt(1.0-ecc**2);
 
     return durat
@@ -896,7 +897,6 @@ def kepler_single_comp_dr25(data, DEMod=None):
     windowfunc_2d = np.tile(np.reshape(windowfunc_1d,(1,nper)),(nrp,1))
     probtransit_2d = np.tile(np.reshape(probtransit_1d,(1,nper)),(nrp,1))
 
-
     # Instantiate detection efficiency object
     #  HINT: If you plan on using KeplerPORTs to make many Det contours
     #  DEMod should be instantiated once outside of module and passed to this function
@@ -921,7 +921,7 @@ def kepler_single_comp_dr25(data, DEMod=None):
     probdet = zz_2d * windowfunc_2d
     #  apply the geometrical probability
     probtot = probdet * probtransit_2d
-    return probdet, probtot, DEMod
+    return probdet, probtot, DEMod, probtransit_2d
 
 def setup_figure():
     """ Set things for making figures"""
@@ -991,7 +991,7 @@ if __name__ == "__main__":
     doit.planet_detection_metric_path = '/soc/nfs/workspace-nfs/so-products-DR25/D.3-tps-sensitivity/FITS'
     # All parameters are set, generate detection contour and detection efficiency
     #  curve
-    probdet, probtot, DEMod = kepler_single_comp_dr25(doit)
+    probdet, probtot, DEMod, probtransit_2d = kepler_single_comp_dr25(doit)
 
     # Make figure of Detection Efficiency and its smeared version
     tmpMes = np.linspace(0.0, 30.0, 1000)
@@ -1038,6 +1038,6 @@ if __name__ == "__main__":
     plt.savefig(wantFigure+'.eps',bbox_inches='tight')
     plt.show()
     
-    print("We Will Miss You Kepler!")
+    print ("We Will Miss You Kepler!")
 
 

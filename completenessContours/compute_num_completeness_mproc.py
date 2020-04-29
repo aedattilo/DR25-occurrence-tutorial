@@ -47,7 +47,7 @@ def nas_multi_grid_dr25(worker_id, n_workers, min_period, max_period,
     kiclist = np.sort(kiclist)
     period_want2d, rp_want2d = np.meshgrid(period_want, rp_want)
     shape2d = period_want2d.shape
-    shape3d = (2,) + shape2d
+    shape3d = (3,) + shape2d
     # Create zero arrays that we will fill
     cumulative_array = np.zeros(shape3d, dtype=np.float64)
     usekiclist = np.array([], dtype=np.int32)
@@ -73,7 +73,7 @@ def nas_multi_grid_dr25(worker_id, n_workers, min_period, max_period,
             curdict.ve_model_name = ve_model_name
             if not doneOnce:
                 DEMod = None
-            probdet, probtot, DEMod = kp.kepler_single_comp_dr25(curdict, DEMod=DEMod)
+            probdet, probtot, DEMod, probtransit_2d = kp.kepler_single_comp_dr25(curdict, DEMod=DEMod)
             doneOnce = True
 
             if np.logical_not(np.all(np.isfinite(probdet))):
@@ -86,6 +86,7 @@ def nas_multi_grid_dr25(worker_id, n_workers, min_period, max_period,
                 continue
             cumulative_array[0] = cumulative_array[0] + probdet
             cumulative_array[1] = cumulative_array[1] + probtot
+            cumulative_array[2] = cumulative_array[2] + probtransit_2d
     # check that the final cumulative_array is clean
     if np.logical_not(np.all(np.isfinite(cumulative_array))):
         print ("Non finite cumulative_array Found!")
