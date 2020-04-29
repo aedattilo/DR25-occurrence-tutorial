@@ -31,19 +31,19 @@ tickfontsize=14.0
 datalinewidth=3.0
 plotboxlinewidth=3.0
 
-wantFigure = 'logCompleteness'
+wantFigure = 'test'
 plt.figure(figsize=(6,4.5),dpi=300)
 ax = plt.gca()
 ax.set_position([0.125, 0.125, 0.825, 0.825])
-uselevels = [0.0, 0.01, 0.05, 0.1, 0.25, 0.5, 0.75, 0.9, 0.95, 0.99]
+uselevels = [0.75, 0.9, 0.95, 0.99, 0.999, 0.9999]
 
 X = period_want2d
 Y = rp_want2d
 x1 = probdet / kiclist.size
 CS2 = plt.contour(X, Y, x1, levels=uselevels, linewidth=datalinewidth, 
                    colors=(myblue,) * len(uselevels))
-#plt.clabel(CS2, inline=1, fontsize=labelfontsize, fmt='%1.2f', 
-#           inline_spacing=10.0, fontweight='ultrabold')
+plt.clabel(CS2, inline=1, fontsize=labelfontsize, 
+           inline_spacing=10.0)
 CS1 = plt.contourf(X, Y, x1, levels=uselevels, cmap=plt.cm.bone)    
 plt.xlabel('Period [day]', fontsize=labelfontsize, fontweight='heavy')
 plt.ylabel('R$_{p}$ [R$_{\oplus}$]', fontsize=labelfontsize, 
