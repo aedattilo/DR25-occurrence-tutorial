@@ -2,7 +2,7 @@ from astropy.io import fits
 import numpy as np
 import matplotlib.pyplot as plt
 
-inputprefix = "out_sc0_GKM_baseline"
+inputprefix = "out0603_sc0_GKM_baseline"
 inputgrid = inputprefix + ".fits.gz"
 
 hdulist = fits.open(inputgrid)
