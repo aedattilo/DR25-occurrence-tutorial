@@ -5,7 +5,7 @@ from astropy.io import fits
 import numpy as np
 
 # prefix = "detCompOut"
-prefix = "out0603__"
+prefix = "out0702__"
 filelist = glob.glob(prefix + '[0-9][0-9][0-9][0-9].fits.gz')
 
 # open first fits file to get the structure
